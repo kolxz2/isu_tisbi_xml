@@ -1,13 +1,11 @@
-package ru.nikolas_snek.isu_tisbi_xml.data.api
-import com.squareup.moshi.Json
+package ru.nikolas_snek.isu_tisbi_xml.data.api.worked
 import com.squareup.moshi.Moshi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
+import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiService
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginRequest
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginResponse
 
@@ -20,7 +18,7 @@ data class LoginResponse(@Json(name = "token") val token: String)*/
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 }*/
 
-fun main() {
+ fun main() {
     val moshi = Moshi.Builder().build()
     val retrofit = Retrofit.Builder()
         .baseUrl("https://isu.tisbi.ru/api/")

@@ -17,5 +17,7 @@ class AuthActivity : AppCompatActivity() {
         pagerAdapter.addFragment(LoginFragment())
         pagerAdapter.addFragment(RegisterFragment())
         viewPager.adapter = pagerAdapter
+
+
     }
 }
