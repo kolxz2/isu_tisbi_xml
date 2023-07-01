@@ -10,10 +10,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import ru.nikolas_snek.isu_tisbi_xml.data.api.RemoteDataSource
-import ru.nikolas_snek.isu_tisbi_xml.data.api.repository.BaseRepository
+import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserPreferences
+import ru.nikolas_snek.isu_tisbi_xml.data.repository.BaseRepository
 
 abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository>: Fragment(){
 
+
+    protected lateinit var userPreferences: UserPreferences
     protected lateinit var binding: B
     protected lateinit var viewModel: VM
     protected val remoteDataSource = RemoteDataSource()
@@ -25,6 +28,7 @@ abstract class BaseFragment<VM: ViewModel, B: ViewBinding, R: BaseRepository>: F
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        userPreferences = UserPreferences(requireContext())
         binding = getFragmentBinding(inflater, container)
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory)[getViewModel()]

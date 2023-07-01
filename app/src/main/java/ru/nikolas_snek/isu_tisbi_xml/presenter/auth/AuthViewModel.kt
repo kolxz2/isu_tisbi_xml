@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ResultRequest
-import ru.nikolas_snek.isu_tisbi_xml.data.api.repository.UserRepositoryImpl
+import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginResponse
 
 class AuthViewModel(private val repositoryImpl : UserRepositoryImpl) : ViewModel(){

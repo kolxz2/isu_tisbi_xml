@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiService
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ResultRequest
-import ru.nikolas_snek.isu_tisbi_xml.data.api.repository.UserRepositoryImpl
+import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 
 
 fun main() {

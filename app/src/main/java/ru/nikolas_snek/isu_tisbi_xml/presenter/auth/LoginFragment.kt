@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.text.set
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiService
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ResultRequest
-import ru.nikolas_snek.isu_tisbi_xml.data.api.repository.UserRepositoryImpl
+import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.databinding.FragmentLoginBinding
 import ru.nikolas_snek.isu_tisbi_xml.presenter.BaseFragment
 
@@ -18,12 +21,17 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepo
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
             when(it){
                 is ResultRequest.Success -> {
                     val token: String = it.data
                     println("Login success. Token: $token")
-                    Toast.makeText(requireContext(), token, Toast.LENGTH_LONG).show()
+                    lifecycleScope.launch{
+                        userPreferences.saveToken(token)
+                    }
+                    Toast.makeText(requireContext(), "Login success.", Toast.LENGTH_SHORT).show()
+
                 }
                 is ResultRequest.Error -> {
                     val error: ResponseBody? = it.message

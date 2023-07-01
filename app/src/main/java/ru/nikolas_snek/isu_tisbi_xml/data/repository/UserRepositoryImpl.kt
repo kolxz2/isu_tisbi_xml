@@ -1,4 +1,4 @@
-package ru.nikolas_snek.isu_tisbi_xml.data.api.repository
+package ru.nikolas_snek.isu_tisbi_xml.data.repository
 
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiService
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginRequest

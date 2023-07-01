@@ -2,8 +2,8 @@ package ru.nikolas_snek.isu_tisbi_xml.presenter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.nikolas_snek.isu_tisbi_xml.data.api.repository.BaseRepository
-import ru.nikolas_snek.isu_tisbi_xml.data.api.repository.UserRepositoryImpl
+import ru.nikolas_snek.isu_tisbi_xml.data.repository.BaseRepository
+import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.presenter.auth.AuthViewModel
 import java.lang.IllegalArgumentException
 
