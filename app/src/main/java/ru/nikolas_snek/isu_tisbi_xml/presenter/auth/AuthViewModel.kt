@@ -8,8 +8,9 @@ import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ResultRequest
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginResponse
+import ru.nikolas_snek.isu_tisbi_xml.presenter.base.BaseViewModel
 
-class AuthViewModel(private val repositoryImpl : UserRepositoryImpl) : ViewModel(){
+class AuthViewModel(private val repositoryImpl : UserRepositoryImpl) : BaseViewModel(repositoryImpl){
 
     private val _loginResponse : MutableLiveData<ResultRequest<String>> = MutableLiveData()
     val loginResponse: MutableLiveData<ResultRequest<String>>
@@ -18,4 +19,6 @@ class AuthViewModel(private val repositoryImpl : UserRepositoryImpl) : ViewModel
     fun login(login: String, password: String) = viewModelScope.launch {
         _loginResponse.value =  repositoryImpl.login(login, password)
     }
+
+    fun saveAuthToken(token : String ) = viewModelScope.launch{repositoryImpl.saveAuthToken(token)}
 }

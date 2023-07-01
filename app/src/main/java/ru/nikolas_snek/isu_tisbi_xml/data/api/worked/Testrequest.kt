@@ -5,7 +5,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiService
+import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginRequest
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginResponse
 
@@ -25,10 +25,10 @@ data class LoginResponse(@Json(name = "token") val token: String)*/
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val apiService = retrofit.create(ApiService::class.java)
+    val apiAuthService = retrofit.create(ApiAuthService::class.java)
 
     val loginRequest = LoginRequest("НСучёв", "kolxzchek")
-    val call = apiService.login(loginRequest)
+    val call = apiAuthService.login(loginRequest)
 
     call.enqueue(object : Callback<LoginResponse> {
         override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {

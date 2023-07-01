@@ -4,16 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.text.set
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
-import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiService
+import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ResultRequest
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.databinding.FragmentLoginBinding
-import ru.nikolas_snek.isu_tisbi_xml.presenter.BaseFragment
+import ru.nikolas_snek.isu_tisbi_xml.presenter.base.BaseFragment
+import ru.nikolas_snek.isu_tisbi_xml.presenter.enable
+import ru.nikolas_snek.isu_tisbi_xml.presenter.home.HomeActivity
+import ru.nikolas_snek.isu_tisbi_xml.presenter.startNewActivity
+import ru.nikolas_snek.isu_tisbi_xml.presenter.visible
 
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepositoryImpl>() {
@@ -21,33 +23,49 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepo
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        binding.pbLogin.visible(false)
+        binding.btnLogin.enable(false)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            when(it){
+            binding.pbLogin.visible(false)
+            when (it) {
                 is ResultRequest.Success -> {
                     val token: String = it.data
                     println("Login success. Token: $token")
-                    lifecycleScope.launch{
-                        userPreferences.saveToken(token)
-                    }
+
+                    viewModel.saveAuthToken(token)
+                    requireActivity().startNewActivity(HomeActivity::class.java)
+
                     Toast.makeText(requireContext(), "Login success.", Toast.LENGTH_SHORT).show()
 
                 }
+
                 is ResultRequest.Error -> {
                     val error: ResponseBody? = it.message
                     println("Login error: $error")
                     Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_LONG).show()
+                    login()
                 }
             }
         })
 
-        binding.btnLogin.setOnClickListener{
-            val login = binding.etEmail.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
+        binding.etPassword.addTextChangedListener {
+            val email = binding.etPassword.text.toString().trim()
+            binding.btnLogin.enable(email.isNotEmpty() && it.toString().isNotEmpty())
+        }
 
-            viewModel.login(login, password)
+
+        binding.btnLogin.setOnClickListener {
+            login()
 
         }
+    }
+
+    private fun login() {
+        val login = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        binding.pbLogin.visible(true)
+        viewModel.login(login, password)
     }
 
     override fun getViewModel() = AuthViewModel::class.java
@@ -57,5 +75,6 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepo
         container: ViewGroup?,
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = UserRepositoryImpl(remoteDataSource.buildAPI(ApiService::class.java))
+    override fun getFragmentRepository() =
+        UserRepositoryImpl(remoteDataSource.buildAPI(ApiAuthService::class.java), userPreferences)
 }

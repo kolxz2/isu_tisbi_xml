@@ -1,18 +1,9 @@
 package ru.nikolas_snek.isu_tisbi_xml.data.api.worked
 
-import com.squareup.moshi.Moshi
-import kotlinx.coroutines.runBlocking
-import okhttp3.ResponseBody
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiService
-import ru.nikolas_snek.isu_tisbi_xml.data.api.ResultRequest
-import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 
-
-fun main() {
+/*fun main() {
     val apiService = createApiService()
-    val userRepository = UserRepositoryImpl(apiService)
+    val userRepository = UserRepositoryImpl(apiService,)
 
     val result = runBlocking { userRepository.login("НСучёв", "kolxzchek") }
 
@@ -35,5 +26,5 @@ private fun createApiService(): ApiService {
         .build()
 
     return retrofit.create(ApiService::class.java)
-}
+}*/
 

@@ -10,7 +10,7 @@ import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginResponse
 /**
 * Формируем запрос
 * */
-interface ApiService {
+interface ApiAuthService {
     @POST("security/login")
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 }

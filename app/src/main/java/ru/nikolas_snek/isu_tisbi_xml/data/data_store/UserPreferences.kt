@@ -1,12 +1,9 @@
 package ru.nikolas_snek.isu_tisbi_xml.data.data_store
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.preference.Preference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -24,7 +21,6 @@ class UserPreferences(
     }
 
 
-
     val authToken: Flow<String?>
         get() = dataStore.data.map { preferences ->
             preferences[KEY_AUTH]
@@ -33,6 +29,12 @@ class UserPreferences(
     suspend fun saveToken(authToken: String) {
         dataStore.edit { preferences ->
             preferences[KEY_AUTH] = authToken
+        }
+    }
+
+    suspend fun clearUserData() {
+        dataStore.edit { preferences ->
+            preferences.clear()
         }
     }
 

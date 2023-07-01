@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import ru.nikolas_snek.isu_tisbi_xml.R
 import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserPreferences
 import ru.nikolas_snek.isu_tisbi_xml.presenter.auth.AuthActivity
+import ru.nikolas_snek.isu_tisbi_xml.presenter.home.HomeActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +20,9 @@ class MainActivity : AppCompatActivity() {
         val userPreferences = UserPreferences(this)
 
         userPreferences.authToken.asLiveData(Dispatchers.IO).observe(this, Observer {
+            val activity = if (it == null) AuthActivity::class.java else HomeActivity::class.java
             Toast.makeText(this, it ?: "Login error", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, activity))
         })
     }
 }
