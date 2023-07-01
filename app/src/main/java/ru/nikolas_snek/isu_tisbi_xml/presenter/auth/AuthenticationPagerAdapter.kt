@@ -1,4 +1,4 @@
-package ru.nikolas_snek.isu_tisbi_xml.presenter
+package ru.nikolas_snek.isu_tisbi_xml.presenter.auth
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

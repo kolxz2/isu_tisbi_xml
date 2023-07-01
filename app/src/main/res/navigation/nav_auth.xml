@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.LoginFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.RegisterFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
 </navigation>

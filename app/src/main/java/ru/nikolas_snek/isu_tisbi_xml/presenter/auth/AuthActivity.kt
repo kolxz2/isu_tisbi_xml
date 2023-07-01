@@ -1,4 +1,4 @@
-package ru.nikolas_snek.isu_tisbi_xml.presenter
+package ru.nikolas_snek.isu_tisbi_xml.presenter.auth
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
