@@ -76,5 +76,5 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepo
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository() =
-        UserRepositoryImpl(remoteDataSource.buildAPI(ApiAuthService::class.java), userPreferences)
+        UserRepositoryImpl(remoteDataSource.buildTokenAPI(ApiAuthService::class.java), userPreferences)
 }

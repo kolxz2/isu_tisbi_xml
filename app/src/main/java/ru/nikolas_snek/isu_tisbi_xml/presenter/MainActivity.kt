@@ -1,12 +1,16 @@
 package ru.nikolas_snek.isu_tisbi_xml.presenter
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.R
 import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserPreferences
 import ru.nikolas_snek.isu_tisbi_xml.presenter.auth.AuthActivity
@@ -19,10 +23,18 @@ class MainActivity : AppCompatActivity() {
 
         val userPreferences = UserPreferences(this)
 
-        userPreferences.authToken.asLiveData(Dispatchers.IO).observe(this, Observer {
-            val activity = if (it == null) AuthActivity::class.java else HomeActivity::class.java
-            Toast.makeText(this, it ?: "Login error", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, activity))
-        })
+        lifecycleScope.launch {
+            val activity =
+                if (userPreferences.checkAllVariablesNotNull()) HomeActivity::class.java else  AuthActivity::class.java
+            startActivity(Intent(this@MainActivity, activity))
+        }
+
+
+        /*        userPreferences.authToken.asLiveData(Dispatchers.IO).observe(this, Observer {
+                    val activity = if (it == null) AuthActivity::class.java else HomeActivity::class.java
+                    startActivity(Intent(this, activity))
+                })*/
     }
+
+
 }

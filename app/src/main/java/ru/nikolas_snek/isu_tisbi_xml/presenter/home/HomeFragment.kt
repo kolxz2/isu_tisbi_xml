@@ -22,7 +22,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
         container: ViewGroup?,
     ) = FragmentHomeBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = UserRepositoryImpl(remoteDataSource.buildAPI(
+    override fun getFragmentRepository() = UserRepositoryImpl(remoteDataSource.buildTokenAPI(
         ApiAuthService::class.java), userPreferences)
 
 
