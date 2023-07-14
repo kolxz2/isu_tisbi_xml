@@ -5,5 +5,6 @@ import android.app.Application
 class TempUserApi:Application() {
     companion object {
         var personalAuthToken: String? = null
+        var firstAuthToken: String? = null
     }
 }

@@ -1,15 +1,9 @@
 package ru.nikolas_snek.isu_tisbi_xml.presenter
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.R
 import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserPreferences

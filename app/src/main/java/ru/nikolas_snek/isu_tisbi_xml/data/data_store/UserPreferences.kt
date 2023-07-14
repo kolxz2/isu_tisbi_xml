@@ -23,7 +23,7 @@ class UserPreferences(
         private val KEY_AUTH = stringPreferencesKey("TOKEN")
         private val KEY_LOGIN = stringPreferencesKey("LOGIN")
         private val KEY_PASSWORD = stringPreferencesKey("PASSWORD")
-        private val KEY_STUDENT_HASH=  stringPreferencesKey("STUDENT_HASH")
+        private val KEY_STUDENT_HASH = stringPreferencesKey("STUDENT_HASH")
         private val KEY_PEOPLE_ROLE = stringPreferencesKey("PEOPLE_ROLE")
     }
 
@@ -90,14 +90,13 @@ class UserPreferences(
     }
 
     suspend fun checkAllVariablesNotNull(): Boolean {
-        val authToken = authToken.firstOrNull()
+        //  val authToken = authToken.firstOrNull()
         val loginStudent = loginStudent.firstOrNull()
         val passwordStudent = passwordStudent.firstOrNull()
         val studentHash = studentHash.firstOrNull()
         val peopleRole = peopleRole.firstOrNull()
 
-        return authToken != null &&
-                loginStudent != null &&
+        return loginStudent != null &&
                 passwordStudent != null &&
                 studentHash != null &&
                 peopleRole != null

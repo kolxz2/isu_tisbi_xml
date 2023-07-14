@@ -1,6 +1,7 @@
 package ru.nikolas_snek.isu_tisbi_xml.data.repository
 
 import androidx.datastore.core.IOException
+import kotlinx.coroutines.flow.firstOrNull
 import okhttp3.ResponseBody
 import ru.nikolas_snek.isu_tisbi_xml.data.TempUserApi
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
@@ -43,6 +44,22 @@ class UserRepositoryImpl(
         }
     }
 
+
+    suspend fun refreshData(): String{
+
+        val login : String = preferences.loginStudent.firstOrNull()!!
+        val password : String = preferences.passwordStudent.firstOrNull()!!
+
+        val tempToken = obtainTempToken(login, password)
+        val tokenValue = checkSuccess(tempToken)
+        preferences.saveToken(tokenValue)
+        val regIdValue = checkSuccess(obtainRegId(tokenValue))
+        val personalTokenValue = checkSuccess(obtainPersonalToken(tokenValue, regIdValue))
+        TempUserApi.personalAuthToken = personalTokenValue
+        TempUserApi.firstAuthToken = tokenValue
+        return personalTokenValue
+
+    }
     private suspend fun obtainTempToken(username: String, password: String): ResultRequest<String> {
         return safeApiCall {
             val response =

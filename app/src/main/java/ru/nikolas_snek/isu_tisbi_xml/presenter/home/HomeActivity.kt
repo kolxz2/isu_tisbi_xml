@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
         val userRepositoryImpl = UserRepositoryImpl(remoteDataSource.buildTokenAPI(ApiAuthService::class.java), UserPreferences(this) )
         lifecycleScope.launch{
             val personalToken  = userRepositoryImpl.refreshData()
-            Log.d("Login",personalToken )
+            //Log.d("Login",personalToken )
         }
 
     }
