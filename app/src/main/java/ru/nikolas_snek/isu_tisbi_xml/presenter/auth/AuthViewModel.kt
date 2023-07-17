@@ -17,5 +17,4 @@ class AuthViewModel(private val repositoryImpl : UserRepositoryImpl) : BaseViewM
         _loginResponse.value =  repositoryImpl.login(login, password)
     }
 
-    fun saveAuthToken(token : String ) = viewModelScope.launch{repositoryImpl.saveAuthToken(token)}
 }

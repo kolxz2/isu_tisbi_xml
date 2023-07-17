@@ -11,4 +11,8 @@
     <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
+    <string name="rating">Рейтинг</string>
+    <string name="calendar">Расписание</string>
+    <string name="education">Обучение</string>
+    <string name="person">Студент</string>
 </resources>

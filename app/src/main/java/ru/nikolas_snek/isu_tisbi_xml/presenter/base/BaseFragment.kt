@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.data.api.RemoteDataSource
-import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserPreferences
+import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserDataStore
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.BaseRepository
 import ru.nikolas_snek.isu_tisbi_xml.presenter.auth.AuthActivity
 import ru.nikolas_snek.isu_tisbi_xml.presenter.startNewActivity
@@ -19,7 +18,7 @@ import ru.nikolas_snek.isu_tisbi_xml.presenter.startNewActivity
 abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository>: Fragment(){
 
 
-    protected lateinit var userPreferences: UserPreferences
+    protected lateinit var userDataStore: UserDataStore
     protected lateinit var binding: B
     protected lateinit var viewModel: VM
     protected val remoteDataSource = RemoteDataSource()
@@ -31,7 +30,7 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        userPreferences = UserPreferences(requireContext())
+        userDataStore = UserDataStore(requireContext())
         binding = getFragmentBinding(inflater, container)
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory)[getViewModel()]
@@ -41,7 +40,7 @@ abstract class BaseFragment<VM: BaseViewModel, B: ViewBinding, R: BaseRepository
     }
 
     fun logout() = lifecycleScope.launch {
-        userPreferences.clearUserData()
+        userDataStore.clearUserData()
         requireActivity().startNewActivity(AuthActivity::class.java)
     }
 

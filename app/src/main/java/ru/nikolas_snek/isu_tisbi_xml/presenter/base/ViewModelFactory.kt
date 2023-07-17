@@ -6,6 +6,8 @@ import ru.nikolas_snek.isu_tisbi_xml.data.repository.BaseRepository
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.presenter.auth.AuthViewModel
 import ru.nikolas_snek.isu_tisbi_xml.presenter.home.HomeViewModel
+import ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.PersonalPlanViewModel
+import ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.StudentProfileViewModel
 import java.lang.IllegalArgumentException
 
 
@@ -15,6 +17,8 @@ class ViewModelFactory(private val repository: BaseRepository) : ViewModelProvid
         return when{
             modelClass.isAssignableFrom(AuthViewModel::class.java)-> AuthViewModel(repository as UserRepositoryImpl) as T
             modelClass.isAssignableFrom(HomeViewModel::class.java)-> HomeViewModel(repository as UserRepositoryImpl) as T
+            modelClass.isAssignableFrom(StudentProfileViewModel::class.java)-> StudentProfileViewModel(repository as UserRepositoryImpl) as T
+            modelClass.isAssignableFrom(PersonalPlanViewModel::class.java)-> PersonalPlanViewModel(repository as UserRepositoryImpl) as T
             else -> throw IllegalArgumentException("ViewModalClass Not Found")
         }
     }

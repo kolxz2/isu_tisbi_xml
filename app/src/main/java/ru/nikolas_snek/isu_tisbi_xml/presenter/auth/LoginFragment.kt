@@ -30,16 +30,9 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepo
             binding.pbLogin.visible(false)
             when (it) {
                 is ResultRequest.Success -> {
-                    val token: String = it.data
-                    println("Login success. Token: $token")
-
-                    viewModel.saveAuthToken(token)
                     requireActivity().startNewActivity(HomeActivity::class.java)
-
                     Toast.makeText(requireContext(), "Login success.", Toast.LENGTH_SHORT).show()
-
                 }
-
                 is ResultRequest.Error -> {
                     val error: ResponseBody? = it.message
                     println("Login error: $error")
@@ -76,5 +69,5 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepo
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository() =
-        UserRepositoryImpl(remoteDataSource.buildTokenAPI(ApiAuthService::class.java), userPreferences)
+        UserRepositoryImpl(remoteDataSource.buildTokenAPI(ApiAuthService::class.java), userDataStore)
 }

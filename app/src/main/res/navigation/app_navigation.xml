@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation.xml"
+    app:startDestination="@id/personalPlanFragment">
+    <fragment
+        android:id="@+id/personalPlanFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.PersonalPlanFragment"
+        android:label="PersonalPlan" />
+    <fragment
+        android:id="@+id/scheduleLessonsFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.ScheduleLessonsFragment"
+        android:label="ScheduleLessons" />
+    <fragment
+        android:id="@+id/trainingRatingFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.TrainingRatingFragment"
+        android:label="TrainingRating" />
+    <fragment
+        android:id="@+id/studentProfile"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.StudentProfileFragment"
+        android:label="StudentProfile"
+        tools:layout="@layout/fragment_student_profile" />
+</navigation>

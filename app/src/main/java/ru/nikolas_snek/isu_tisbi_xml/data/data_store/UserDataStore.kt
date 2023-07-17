@@ -4,23 +4,20 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
 
 private val Context.dataStore by preferencesDataStore("USER_AUTH")
 
-class UserPreferences(
+class UserDataStore(
     context: Context,
 ) {
 
     private val dataStore = context.dataStore
 
     companion object {
-        private val KEY_AUTH = stringPreferencesKey("TOKEN")
         private val KEY_LOGIN = stringPreferencesKey("LOGIN")
         private val KEY_PASSWORD = stringPreferencesKey("PASSWORD")
         private val KEY_STUDENT_HASH = stringPreferencesKey("STUDENT_HASH")
@@ -28,10 +25,7 @@ class UserPreferences(
     }
 
 
-    val authToken: Flow<String?>
-        get() = dataStore.data.map { preferences ->
-            preferences[KEY_AUTH]
-        }
+
 
     val loginStudent: Flow<String?>
         get() = dataStore.data.map { preferences ->
@@ -52,12 +46,6 @@ class UserPreferences(
         get() = dataStore.data.map { preferences ->
             preferences[KEY_PEOPLE_ROLE]?.toInt()
         }
-
-    suspend fun saveToken(authToken: String) {
-        dataStore.edit { preferences ->
-            preferences[KEY_AUTH] = authToken
-        }
-    }
 
     suspend fun saveLogin(loginStudent: String) {
         dataStore.edit { preferences ->
