@@ -12,6 +12,7 @@ import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserDataStore
 import ru.nikolas_snek.isu_tisbi_xml.data.models.LoginRequest
 import ru.nikolas_snek.isu_tisbi_xml.data.models.PeopleRoleIdRequest
 import ru.nikolas_snek.isu_tisbi_xml.domain.repository.UserRepository
+import ru.nikolas_snek.isu_tisbi_xml.domain.repository.models.PersonalPlan
 import ru.nikolas_snek.isu_tisbi_xml.domain.repository.models.StudentRatingProfile
 
 /**
@@ -119,9 +120,9 @@ class UserRepositoryImpl(
 
         }
 
-    private suspend fun obtainTrainingGroupList(personalTokenValue: String): ResultRequest<List<StudentRatingProfile>> {
-        val studentHash: String = dataStore.studentHash.firstOrNull()!!
-        val temp = safeApiCall {
+    private suspend fun obtainTrainingGroupList(personalTokenValue: String): ResultRequest<List<StudentRatingProfile>> =
+        safeApiCall {
+            val studentHash: String = dataStore.studentHash.firstOrNull()!!
             val response =
                 apiStudentService.trainingGroupListGet(
                     token = personalTokenValue,
@@ -131,20 +132,27 @@ class UserRepositoryImpl(
             response
                 ?: throw IllegalStateException("Login response is null or token is missing")
         }
-        return temp
-    }
 
-    override suspend fun getTrainingGroupList(): List<StudentRatingProfile>{
-        val temp = TempUserApiData.personalAuthToken!!
-        val studentHash: String = dataStore.studentHash.firstOrNull()!!
-        Log.d("List", studentHash.toString())
-        val temp2 = obtainTrainingGroupList(temp)
-        Log.d("List", temp2.toString())
-        val temp3 = checkSuccess(temp2)
-        return temp3
-    }
+    override suspend fun getTrainingGroupList(): List<StudentRatingProfile> =
+        checkSuccess(obtainTrainingGroupList(TempUserApiData.personalAuthToken!!))
 
 
+    private suspend fun obtainPersonalPlan(personalTokenValue: String): ResultRequest<List<PersonalPlan>> =
+        safeApiCall {
+            val studentHash: String = dataStore.studentHash.firstOrNull()!!
+            val response =
+                apiStudentService.personalPlantGet(
+                    studentHash = studentHash,
+                    token = personalTokenValue
+                ).execute().body()
+            Log.d("List", response.toString())
+            response
+                ?: throw IllegalStateException("Login response is null or token is missing")
+        }
+
+
+    override suspend fun getPersonalPlanList(): List<PersonalPlan> =
+        checkSuccess(obtainPersonalPlan(TempUserApiData.personalAuthToken!!))
 
 }
 

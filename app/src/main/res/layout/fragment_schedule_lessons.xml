@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".presenter.home.screens.ScheduleLessonsFragment">
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".presenter.home.screens.schedule_lessons.ScheduleLessonsFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

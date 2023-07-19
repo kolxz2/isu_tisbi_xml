@@ -1,4 +1,4 @@
-package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen.resycler
+package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.training_rating.resycler
 
 import android.graphics.Rect
 import android.view.View

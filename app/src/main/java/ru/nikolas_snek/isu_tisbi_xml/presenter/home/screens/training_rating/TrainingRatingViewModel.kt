@@ -1,4 +1,4 @@
-package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen
+package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.training_rating
 
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.domain.GetTrainingRatingUseCase
@@ -13,7 +13,7 @@ class TrainingRatingViewModel(
 
     private val getTrainingRatingUseCase = GetTrainingRatingUseCase(repositoryImpl)
 
-    suspend fun getTrainingRatingList(): List<StudentRatingProfile>{
+    suspend fun getTrainingRatingList(): List<StudentRatingProfileWithPosition>{
         return getTrainingRatingUseCase.getTrainingGroupListWithPosition()
     }
 

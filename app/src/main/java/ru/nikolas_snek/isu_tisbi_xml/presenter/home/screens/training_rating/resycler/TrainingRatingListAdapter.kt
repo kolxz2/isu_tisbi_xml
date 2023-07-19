@@ -1,15 +1,16 @@
-package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen.resycler
+package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.training_rating.resycler
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import ru.nikolas_snek.isu_tisbi_xml.R
 import ru.nikolas_snek.isu_tisbi_xml.databinding.RatingRecyclerItemBinding
 import ru.nikolas_snek.isu_tisbi_xml.domain.repository.models.StudentRatingProfile
+import ru.nikolas_snek.isu_tisbi_xml.domain.repository.models.StudentRatingProfileWithPosition
 
 class TrainingRatingListAdapter :
-    ListAdapter<StudentRatingProfile, RatingRecyclerIemHolder>(RatingRecyclerIemDiffUtilCallback()) {
+    ListAdapter<StudentRatingProfileWithPosition, RatingRecyclerIemHolder>(RatingRecyclerIemDiffUtilCallback()) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RatingRecyclerIemHolder {
 
         val binding = RatingRecyclerItemBinding.inflate(
@@ -23,7 +24,7 @@ class TrainingRatingListAdapter :
     override fun onBindViewHolder(holder: RatingRecyclerIemHolder, position: Int) {
         val student = getItem(position)
         holder.tvModulePercent.text = student.moduleProcent.toString()
-        holder.tvRatingPosition.text = position.toString()
+        holder.tvRatingPosition.text = student.position.toString()
         holder.tvStudentName.text = student.studentName
 
     }

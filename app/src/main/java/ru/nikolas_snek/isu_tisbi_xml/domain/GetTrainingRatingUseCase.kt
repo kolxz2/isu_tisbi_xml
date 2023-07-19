@@ -6,23 +6,28 @@ import ru.nikolas_snek.isu_tisbi_xml.domain.repository.models.StudentRatingProfi
 
 class GetTrainingRatingUseCase(private val repository: UserRepository) {
 
-    suspend fun getTrainingGroupListWithPosition(): List<StudentRatingProfile> {
+    suspend fun getTrainingGroupListWithPosition(): List<StudentRatingProfileWithPosition> {
         val groupRating: List<StudentRatingProfile> = repository.getTrainingGroupList()
         // сортируем рейтинг
         val sortedGroupRating = groupRating.sortedBy { it.moduleProcent }
         // создаем новый список StudentRatingProfileWithPosition
-        // todo при создании нового студета нужно объеденять в одну группу студентов с
-        //  одинаковыми баллами и давать один номер в рейтинге
+        var tempModuleProcent = 101
+        var tempPosition = 0
         val sortedGroupRatingWithPosition =
-            sortedGroupRating.mapIndexed { index, studentRatingProfile ->
+            sortedGroupRating.mapIndexed { _, studentRatingProfile ->
                 StudentRatingProfileWithPosition(
-                    position = index + 1,
+                    position = if (tempModuleProcent > studentRatingProfile.moduleProcent) {
+                        tempModuleProcent = studentRatingProfile.moduleProcent
+                        ++tempPosition
+                    } else {
+                        tempPosition
+                    },
                     moduleProcent = studentRatingProfile.moduleProcent,
                     moduleResult = studentRatingProfile.moduleResult,
                     studId = studentRatingProfile.studId,
                     studentName = studentRatingProfile.studentName
                 )
             }
-        return sortedGroupRating
+        return sortedGroupRatingWithPosition
     }
 }

@@ -1,22 +1,24 @@
-package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens
+package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.schedule_lessons
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiStudentService
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
-import ru.nikolas_snek.isu_tisbi_xml.databinding.FragmentStudentProfileBinding
+import ru.nikolas_snek.isu_tisbi_xml.databinding.FragmentScheduleLessonsBinding
 import ru.nikolas_snek.isu_tisbi_xml.presenter.base.BaseFragment
+import ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.student_profile.StudentProfileViewModel
 
 
-class StudentProfileFragment : BaseFragment<StudentProfileViewModel, FragmentStudentProfileBinding, UserRepositoryImpl>() {
+class ScheduleLessonsFragment :
+    BaseFragment<StudentProfileViewModel, FragmentScheduleLessonsBinding, UserRepositoryImpl>() {
 
     override fun getViewModel() = StudentProfileViewModel::class.java
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
-    ) = FragmentStudentProfileBinding.inflate(inflater, container, false)
+    ) = FragmentScheduleLessonsBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository() = UserRepositoryImpl(
         remoteDataSource.buildTokenAPI(
@@ -29,10 +31,4 @@ class StudentProfileFragment : BaseFragment<StudentProfileViewModel, FragmentStu
     )
 
 
-    override fun onStart() {
-        super.onStart()
-        binding.button2.setOnClickListener {
-            logout()
-        }
-    }
 }

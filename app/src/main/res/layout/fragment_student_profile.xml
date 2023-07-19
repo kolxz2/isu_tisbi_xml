@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#0477d2"
     android:visibility="visible"
-    tools:context=".presenter.home.screens.StudentProfileFragment">
+    tools:context=".presenter.home.screens.student_profile.StudentProfileFragment">
 
 
     <Button

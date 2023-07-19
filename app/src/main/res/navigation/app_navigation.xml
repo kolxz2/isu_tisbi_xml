@@ -6,19 +6,19 @@
     app:startDestination="@id/personalPlanFragment">
     <fragment
         android:id="@+id/personalPlanFragment"
-        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.PersonalPlanFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.personal_plan.PersonalPlanFragment"
         android:label="PersonalPlan" />
     <fragment
         android:id="@+id/scheduleLessonsFragment"
-        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.ScheduleLessonsFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.schedule_lessons.ScheduleLessonsFragment"
         android:label="ScheduleLessons" />
     <fragment
         android:id="@+id/trainingRatingFragment"
-        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen.TrainingRatingFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.training_rating.TrainingRatingFragment"
         android:label="TrainingRating" />
     <fragment
         android:id="@+id/studentProfile"
-        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.StudentProfileFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.student_profile.StudentProfileFragment"
         android:label="StudentProfile"
         tools:layout="@layout/fragment_student_profile" />
 </navigation>

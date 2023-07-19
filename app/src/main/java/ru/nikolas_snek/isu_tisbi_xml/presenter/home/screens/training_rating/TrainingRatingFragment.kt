@@ -1,4 +1,4 @@
-package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen
+package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.training_rating
 
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +12,8 @@ import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiStudentService
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.databinding.FragmentTrainingRatingBinding
 import ru.nikolas_snek.isu_tisbi_xml.presenter.base.BaseFragment
-import ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen.resycler.FooterDecoration
-import ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen.resycler.TrainingRatingListAdapter
+import ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.training_rating.resycler.FooterDecoration
+import ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.training_rating.resycler.TrainingRatingListAdapter
 
 
 class TrainingRatingFragment :

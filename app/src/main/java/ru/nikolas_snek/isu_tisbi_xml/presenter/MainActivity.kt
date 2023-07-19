@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             userDataStore)
 
         lifecycleScope.launch {
-            // todo сделать при проверке сразу подгрузку данных и только потом запускать HomeActivity
             val activity =
                 if (userDataStore.checkAllVariablesNotNull()) {
                     repositoryImpl.refreshData()

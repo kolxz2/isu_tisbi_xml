@@ -1,0 +1,30 @@
+package ru.nikolas_snek.isu_tisbi_xml.domain.repository.models
+
+data class Checkpoint(
+    val studId: Int?,
+    val persPlanCheckPointStatusId: Int?,
+    val checkPointId: Int?,
+    val checkPointName: String?,
+    val CPTypeId: Int?,
+    val CPStatusTypeId: Int?,
+    val CPFinalResult: Int?,
+    val CPFinalResultDate: String?,
+    val typeName: String?,
+    val finalResult: String?,
+    val evalSheetId: String?,
+    val restTryNumb: Int?,
+    val isAccessed: Int?,
+    val alterGroupHeaderId: Int?,
+    val characterTypeId: Int?,
+    val isAutoCP: Int?,
+    val staffId: Int?,
+    val staffName: String?,
+    val parentId: Int?,
+    val evalSheetStatusTypeId: Int?,
+    val isEduStandard: Int?,
+    val isRemoteEducation: Int?,
+    val executionOrder: Int?,
+    val subjectId: Int?,
+    val semNumber: Int?,
+    val evalSheetName: String?
+)
