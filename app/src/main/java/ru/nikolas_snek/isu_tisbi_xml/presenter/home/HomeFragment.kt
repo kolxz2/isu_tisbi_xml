@@ -3,6 +3,7 @@ package ru.nikolas_snek.isu_tisbi_xml.presenter.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
+import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiStudentService
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.databinding.FragmentHomeBinding
 import ru.nikolas_snek.isu_tisbi_xml.presenter.base.BaseFragment
@@ -17,8 +18,15 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
         container: ViewGroup?,
     ) = FragmentHomeBinding.inflate(inflater, container, false)
 
-    override fun getFragmentRepository() = UserRepositoryImpl(remoteDataSource.buildTokenAPI(
-        ApiAuthService::class.java), userDataStore)
+    override fun getFragmentRepository() = UserRepositoryImpl(
+        remoteDataSource.buildTokenAPI(
+            ApiAuthService::class.java
+        ),
+        remoteDataSource.buildTokenAPI(
+            ApiStudentService::class.java
+        ),
+        userDataStore
+    )
 
 
     override fun onStart() {

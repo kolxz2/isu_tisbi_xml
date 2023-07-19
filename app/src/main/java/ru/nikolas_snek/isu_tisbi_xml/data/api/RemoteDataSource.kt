@@ -12,22 +12,22 @@ class RemoteDataSource {
         private const val BASE_URL = "https://isu.tisbi.ru/api/"
     }
 
-        fun <API> buildTokenAPI(api: Class<API>, authToken: String? = null): API {
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(
-                    OkHttpClient.Builder()
-                        .also { client ->
-                            if (BuildConfig.DEBUG) {
-                                val login = HttpLoggingInterceptor()
-                                login.setLevel(HttpLoggingInterceptor.Level.BODY)
-                                client.addInterceptor(login)
-                            }
-                        }.build()
-                )
-                .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))
-                .build()
-                .create(api)
-        }
+    fun <API> buildTokenAPI(api: Class<API>, authToken: String? = null): API {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(
+                OkHttpClient.Builder()
+                    .also { client ->
+                        if (BuildConfig.DEBUG) {
+                            val login = HttpLoggingInterceptor()
+                            login.setLevel(HttpLoggingInterceptor.Level.BODY)
+                            client.addInterceptor(login)
+                        }
+                    }.build()
+            )
+            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))
+            .build()
+            .create(api)
+    }
 
 }

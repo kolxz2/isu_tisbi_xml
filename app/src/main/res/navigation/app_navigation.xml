@@ -14,7 +14,7 @@
         android:label="ScheduleLessons" />
     <fragment
         android:id="@+id/trainingRatingFragment"
-        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.TrainingRatingFragment"
+        android:name="ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.traning_screen.TrainingRatingFragment"
         android:label="TrainingRating" />
     <fragment
         android:id="@+id/studentProfile"

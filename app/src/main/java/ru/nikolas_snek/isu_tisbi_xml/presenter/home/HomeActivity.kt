@@ -9,6 +9,7 @@ import com.example.dependencyinjectionstart.CurvedBottomNavigation
 import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.R
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
+import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiStudentService
 import ru.nikolas_snek.isu_tisbi_xml.data.api.RemoteDataSource
 import ru.nikolas_snek.isu_tisbi_xml.data.data_store.UserDataStore
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
@@ -36,14 +37,12 @@ class HomeActivity : AppCompatActivity() {
             initNavHost()
             setUpBottomNavigation()
         }
-      //  setContentView(R.layout.activity_home)
         val remoteDataSource = RemoteDataSource()
-        val userRepositoryImpl = UserRepositoryImpl(remoteDataSource.buildTokenAPI(ApiAuthService::class.java), UserDataStore(this) )
-        lifecycleScope.launch{
-            val personalToken  = userRepositoryImpl.refreshData()
-            //Log.d("Login",personalToken )
-        }
-
+        val userRepositoryImpl = UserRepositoryImpl(
+            remoteDataSource.buildTokenAPI(ApiAuthService::class.java),
+            remoteDataSource.buildTokenAPI(ApiStudentService::class.java),
+            UserDataStore(this)
+        )
     }
     private fun ActivityHomeBinding.setUpBottomNavigation() {
         val bottomNavigationItems = mutableListOf(

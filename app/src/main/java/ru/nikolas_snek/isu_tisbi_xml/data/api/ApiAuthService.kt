@@ -34,4 +34,5 @@ interface ApiAuthService {
     @GET("area/user/student/")
     fun studentSashGet(@Query("token") personalToken: String): Call<StudentHashResponse>
 
+
 }

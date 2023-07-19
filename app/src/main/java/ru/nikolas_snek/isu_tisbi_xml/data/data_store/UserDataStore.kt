@@ -24,9 +24,6 @@ class UserDataStore(
         private val KEY_PEOPLE_ROLE = stringPreferencesKey("PEOPLE_ROLE")
     }
 
-
-
-
     val loginStudent: Flow<String?>
         get() = dataStore.data.map { preferences ->
             preferences[KEY_LOGIN]

@@ -329,7 +329,6 @@ class BottomNavigationItem @JvmOverloads constructor(
             interpolator = FastOutSlowInInterpolator()
             addUpdateListener {
                 val f = it.animatedFraction
-                Log.e("qmrFraction", "$f")
                 progress = if (enableCell)
                     f
                 else

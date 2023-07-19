@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import okhttp3.ResponseBody
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
+import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiStudentService
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ResultRequest
 import ru.nikolas_snek.isu_tisbi_xml.data.repository.UserRepositoryImpl
 import ru.nikolas_snek.isu_tisbi_xml.databinding.FragmentLoginBinding
@@ -69,5 +70,9 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, UserRepo
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
     override fun getFragmentRepository() =
-        UserRepositoryImpl(remoteDataSource.buildTokenAPI(ApiAuthService::class.java), userDataStore)
+        UserRepositoryImpl(
+            remoteDataSource.buildTokenAPI(ApiAuthService::class.java),
+            remoteDataSource.buildTokenAPI(ApiStudentService::class.java),
+            userDataStore
+        )
 }
