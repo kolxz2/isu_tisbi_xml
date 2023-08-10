@@ -1,5 +1,6 @@
 package ru.nikolas_snek.isu_tisbi_xml.data.repository
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -20,6 +21,7 @@ abstract class BaseRepository {
                     }
 
                     else -> {
+                        Log.d("NET throwable ", throwable.message.toString() )
                         ResultRequest.Error(null)
                     }
                 }

@@ -6,6 +6,7 @@ data class PersonalPlan(
     val semNumber: Int?,
     val typeName: String?,
     val CPFinalResult: String?,
+    val current: Boolean,
     val checkPoints: List<Checkpoint>? = emptyList()
 )
 

@@ -23,9 +23,4 @@
 
     </declare-styleable>
 
-<!--    <attr name="bottomNavigationType">-->
-<!--        <enum name="labeled" value="1" />-->
-<!--        <enum name="iconed" value="2" />-->
-<!--    </attr>-->
-
 </resources>

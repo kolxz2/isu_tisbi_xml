@@ -29,7 +29,11 @@ class UserRepositoryImpl(
         val tempToken = obtainTempToken(login, password)
 
         val tempTokenValue = checkSuccess(obtainTempToken(login, password))
-        val regIdValue = checkSuccess(obtainRegId(tempTokenValue))
+        Log.d("NET", tempTokenValue)
+        val regIdValue2 = obtainRegId(tempTokenValue)
+        Log.d("NET", regIdValue2.toString())
+        val regIdValue =  checkSuccess(regIdValue2)
+        Log.d("NET", regIdValue.toString())
         val personalTokenValue = checkSuccess(obtainPersonalToken(tempTokenValue, regIdValue))
         val studentHashValue = checkSuccess(obtainStudentHash(personalTokenValue))
         TempUserApiData.personalAuthToken = personalTokenValue
@@ -71,11 +75,18 @@ class UserRepositoryImpl(
             val response =
                 apiAuthService.roleListGet(
                     tokenValue
-                ).execute().body()
-            response?.list?.firstOrNull()?.peopleRoleId
-                ?: throw IllegalStateException("Login response is null or token is missing")
+                )
+            Log.d("NET", "response" + response)
+            val response2 = response.execute()
+            Log.d("NET", "response2" + response2)
+            val response3 = response2.body()
+            Log.d("NET", "response3" + response3)
+            val list = response3?.list ?:  throw IllegalStateException("Login response is null or token is missing")
+            Log.d("NET", "list" + list)
+            val student = list.firstOrNull{ it.internetPageName == "student/" } ?: throw IllegalStateException("Login response is null or token is missing")
+            Log.d("NET", "student.peopleRoleId.toString()" + student.peopleRoleId.toString())
+            student.peopleRoleId
         }
-
     }
 
     private suspend fun obtainPersonalToken(

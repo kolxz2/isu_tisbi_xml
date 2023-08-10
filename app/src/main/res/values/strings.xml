@@ -14,4 +14,6 @@
     <string name="calendar">Расписание</string>
     <string name="education">Обучение</string>
     <string name="person">Студент</string>
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
 </resources>
