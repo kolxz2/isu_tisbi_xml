@@ -128,7 +128,7 @@ fun TutorialModalBottomSheet(
         ModalBottomSheet(
             onDismissRequest = { showModalBottomSheet.value = false },
             sheetState = bottomSheetState,
-            containerColor = MaterialTheme.colorScheme.secondary,
+            containerColor = MaterialTheme.colorScheme.surface,
         ) {
             Column(Modifier.fillMaxSize()) {
                 LazyColumn() {
@@ -138,22 +138,24 @@ fun TutorialModalBottomSheet(
                                 .height(57.dp)
                                 .clickable {
                                     changeSemester(index)
-                                    scope.launch { bottomSheetState.hide() }.invokeOnCompletion {
-                                        if (!bottomSheetState.isVisible) {
-                                            showModalBottomSheet.value = false
+                                    scope
+                                        .launch { bottomSheetState.hide() }
+                                        .invokeOnCompletion {
+                                            if (!bottomSheetState.isVisible) {
+                                                showModalBottomSheet.value = false
+                                            }
                                         }
-                                    }
                                 },
                             supportingContent = {
                                 if (dataItem.current) Text(
                                     "(текущий семестр)",
-                                    color = MaterialTheme.colorScheme.primary
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                             },
                             headlineContent = {
                                 Text(
                                     dataItem.name,
-                                    color = MaterialTheme.colorScheme.primary,
+                                    color = MaterialTheme.colorScheme.onSurface,
                                 )
                             },
                             leadingContent = {
@@ -161,12 +163,12 @@ fun TutorialModalBottomSheet(
                                     Icon(
                                         Icons.Filled.NavigateNext,
                                         "contentDescription",
-                                        tint = MaterialTheme.colorScheme.primary
+                                        tint = MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                             },
                             colors = ListItemDefaults.colors(
-                                containerColor = MaterialTheme.colorScheme.secondary
+                                containerColor = MaterialTheme.colorScheme.surface
                             ),
 
                         )
@@ -174,6 +176,7 @@ fun TutorialModalBottomSheet(
 
                     })
                 }
+
             }
         }
 }

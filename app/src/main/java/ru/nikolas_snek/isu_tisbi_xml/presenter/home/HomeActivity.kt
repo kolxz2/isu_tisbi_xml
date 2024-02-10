@@ -1,12 +1,17 @@
 package ru.nikolas_snek.isu_tisbi_xml.presenter.home
 
+import android.graphics.Paint.Style
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.TypedValue
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.dependencyinjectionstart.CurvedBottomNavigation
+import com.example.dependencyinjectionstart.dp
 import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.R
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
@@ -38,6 +43,8 @@ class HomeActivity : AppCompatActivity() {
             initNavHost()
             setUpBottomNavigation()
         }
+
+        setSupportActionBar(findViewById(R.id.my_toolbar))
         val remoteDataSource = RemoteDataSource()
         val userRepositoryImpl = UserRepositoryImpl(
             remoteDataSource.buildTokenAPI(ApiAuthService::class.java),
@@ -73,7 +80,6 @@ class HomeActivity : AppCompatActivity() {
             setOnClickMenuListener {
                 navController.navigate(it.id)
             }
-            // optional
             setupNavController(navController)
         }
     }

@@ -1,14 +1,12 @@
 package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.personal_plan
 
-import BottomSheetDemo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -37,6 +35,8 @@ class PersonalPlanFragment :
             Log.d("PersonalPlanFragment", viewModel.semesterSubjects.value.toString())
         }
 
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.personal_plan_action_bar_title)
         return ComposeView(requireContext()).apply {
             setContent {
                 BasicsCodelabTheme {

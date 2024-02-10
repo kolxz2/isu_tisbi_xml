@@ -6,16 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".presenter.home.HomeActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
         app:navGraph="@navigation/app_navigation" />
 
     <View
@@ -32,12 +44,20 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cbn_background="@color/white"
+        app:cbn_background="?background"
+        app:cbn_shadowColor="@color/gray"
         app:cbn_height="76dp"
         app:cbn_icon_size="30dp"
         app:cbn_curve_radius="30dp"
+        app:cbn_rippleColor="?colorSecondary"
+        app:cbn_badgeBackgroundColor="#2E43FF"
+        app:cbn_badgeTextColor="#77FF2E"
+        app:cbn_fabColor="?colorSecondaryFixedDim"
+        app:cbn_selectedIconColor="?colorSecondaryFixed"
+        app:cbn_iconColor="?colorSecondaryFixed"
+        app:cbn_titleColor="?colorSecondaryFixed"
         app:cbn_selected_icon_size="48dp"
-        app:cbn_titleColor="#2ea8ff"
+
         app:cbn_titleFont="@font/bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

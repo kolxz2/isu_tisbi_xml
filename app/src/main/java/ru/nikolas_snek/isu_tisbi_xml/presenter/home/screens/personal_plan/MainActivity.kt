@@ -5,12 +5,14 @@ package ru.nikolas_snek.isu_tisbi_xml.presenter.home.screens.personal_plan
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -58,15 +60,15 @@ fun MyApp(modifier: Modifier = Modifier, viewModel: PersonalPlanViewModel) {
                 )
                 LazyColumn(
                     modifier = modifier
-                        .padding(vertical = 4.dp)
                         .fillMaxHeight(),
 
                     ) {
-                    items(items = subjects!!, /*key = { it.name }*/) { subject ->
+                    itemsIndexed(subjects!!) {index, subject ->
                         //todo ролик про ключи и список с подписками
                         Greeting(subject = subject, changeVisibility = {
                             viewModel.changeSubjectVisibility(it)
                         })
+                        if (subjects!!.size == index+1) Spacer(Modifier.height(100.dp))
                     }
                 }
 

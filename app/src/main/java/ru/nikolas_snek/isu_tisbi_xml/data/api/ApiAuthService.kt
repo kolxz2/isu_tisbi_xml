@@ -14,7 +14,7 @@ import ru.nikolas_snek.isu_tisbi_xml.data.models.PersonalTokenResponse
 import ru.nikolas_snek.isu_tisbi_xml.data.models.StudentHashResponse
 
 /**
-* Формируем запрос
+* Формируем HTTP запросы для isu.tisbi.ru
 * */
 interface ApiAuthService {
 

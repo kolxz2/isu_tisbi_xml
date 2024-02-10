@@ -129,6 +129,9 @@ class UserRepositoryImpl(
             }
 
 
+            else -> {
+                throw IOException("Ошибка при выполнении запроса в сеть")
+            }
         }
 
     private suspend fun obtainTrainingGroupList(personalTokenValue: String): ResultRequest<List<StudentRatingProfile>> =

@@ -16,4 +16,11 @@
     <string name="person">Студент</string>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
+    <string name="personal_plan_action_bar_title">Персональный палан</string>
+    <string name="schedule_lessons_action_bar_title">Расписание занятий</string>
+    <string name="training_rating_action_bar_title">Рейтинг обучения</string>
+    <string name="student_profile_action_bar_title">Профиль студента</string>
+    <string name="rating_header">Рейтинг</string>
+    <string name="FIO_header">ФИО</string>
+    <string name="score_header">Балл</string>
 </resources>
