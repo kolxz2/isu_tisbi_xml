@@ -1,18 +1,9 @@
 package ru.nikolas_snek.isu_tisbi_xml.presenter.home
 
-import android.graphics.Paint.Style
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.TypedValue
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.dependencyinjectionstart.CurvedBottomNavigation
-import com.example.dependencyinjectionstart.dp
-import kotlinx.coroutines.launch
 import ru.nikolas_snek.isu_tisbi_xml.R
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiAuthService
 import ru.nikolas_snek.isu_tisbi_xml.data.api.ApiStudentService
@@ -32,7 +23,6 @@ class HomeActivity : AppCompatActivity() {
         val SCHEDULE_LESSONS = R.id.scheduleLessonsFragment
         val TRAINING_RATING = R.id.trainingRatingFragment
         val STUDENT_PROFILE = R.id.studentProfile
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +31,27 @@ class HomeActivity : AppCompatActivity() {
         with(binding) {
             setContentView(root)
             initNavHost()
-            setUpBottomNavigation()
+            bottomNavigationView.setOnItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.calendar -> {
+                        navController.navigate(SCHEDULE_LESSONS)
+                    }
+
+                    R.id.education -> {
+                        navController.navigate(PERSONAL_PLAN)
+                    }
+
+                    R.id.rating -> {
+                        navController.navigate(TRAINING_RATING)
+                    }
+
+                    R.id.person -> {
+                        navController.navigate(STUDENT_PROFILE)
+                    }
+                }
+                true
+
+            }
         }
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
@@ -51,37 +61,6 @@ class HomeActivity : AppCompatActivity() {
             remoteDataSource.buildTokenAPI(ApiStudentService::class.java),
             UserDataStore(this)
         )
-    }
-    private fun ActivityHomeBinding.setUpBottomNavigation() {
-        val bottomNavigationItems = mutableListOf(
-            CurvedBottomNavigation.Model(
-                SCHEDULE_LESSONS,
-                getString(R.string.calendar),
-                R.drawable.calendar
-            ),
-            CurvedBottomNavigation.Model(
-                PERSONAL_PLAN,
-                getString(R.string.education),
-                R.drawable.education
-            ),
-            CurvedBottomNavigation.Model(
-                TRAINING_RATING,
-                getString(R.string.rating),
-                R.drawable.rating
-            ),
-            CurvedBottomNavigation.Model(
-                STUDENT_PROFILE,
-                getString(R.string.person),
-                R.drawable.person
-            ),
-        )
-        bottomNavigation.apply {
-            bottomNavigationItems.forEach { add(it) }
-            setOnClickMenuListener {
-                navController.navigate(it.id)
-            }
-            setupNavController(navController)
-        }
     }
 
     private fun initNavHost() {
@@ -104,6 +83,7 @@ class HomeActivity : AppCompatActivity() {
                 STUDENT_PROFILE -> {
                     navController.popBackStack(R.id.personalPlanFragment, false)
                 }
+
                 TRAINING_RATING -> {
                     navController.popBackStack(R.id.personalPlanFragment, false)
                 }

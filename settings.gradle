@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "isu_tisbi_xml"
 include ':app'
-include ':curvedBottomNaviagtion'

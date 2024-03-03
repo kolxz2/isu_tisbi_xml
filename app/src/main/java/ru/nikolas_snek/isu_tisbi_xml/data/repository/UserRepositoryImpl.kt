@@ -76,13 +76,13 @@ class UserRepositoryImpl(
                 apiAuthService.roleListGet(
                     tokenValue
                 )
-            Log.d("NET", "response" + response)
+            Log.d("NET", "response $response")
             val response2 = response.execute()
-            Log.d("NET", "response2" + response2)
+            Log.d("NET", "response2 $response2")
             val response3 = response2.body()
-            Log.d("NET", "response3" + response3)
+            Log.d("NET", "response3 $response3")
             val list = response3?.list ?:  throw IllegalStateException("Login response is null or token is missing")
-            Log.d("NET", "list" + list)
+            Log.d("NET", "list $list")
             val student = list.firstOrNull{ it.internetPageName == "student/" } ?: throw IllegalStateException("Login response is null or token is missing")
             Log.d("NET", "student.peopleRoleId.toString()" + student.peopleRoleId.toString())
             student.peopleRoleId

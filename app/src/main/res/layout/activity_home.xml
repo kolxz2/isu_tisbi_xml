@@ -30,37 +30,15 @@
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
         app:navGraph="@navigation/app_navigation" />
 
-    <View
-        android:id="@+id/background_rect"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/gradient_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
 
-    <com.example.dependencyinjectionstart.CurvedBottomNavigation
-        android:id="@+id/bottomNavigation"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cbn_background="?background"
-        app:cbn_shadowColor="@color/gray"
-        app:cbn_height="76dp"
-        app:cbn_icon_size="30dp"
-        app:cbn_curve_radius="30dp"
-        app:cbn_rippleColor="?colorSecondary"
-        app:cbn_badgeBackgroundColor="#2E43FF"
-        app:cbn_badgeTextColor="#77FF2E"
-        app:cbn_fabColor="?colorSecondaryFixedDim"
-        app:cbn_selectedIconColor="?colorSecondaryFixed"
-        app:cbn_iconColor="?colorSecondaryFixed"
-        app:cbn_titleColor="?colorSecondaryFixed"
-        app:cbn_selected_icon_size="48dp"
-
-        app:cbn_titleFont="@font/bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/student_navigation"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
